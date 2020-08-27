@@ -37,6 +37,7 @@ function getTodaysEvent() {
       event.endTimeInt = parseInt(getTimeWithOutSymbol(event.endTime));
       event.startTimeFormatted = getTime(event.startTime);
       event.status = "upcoming";
+      return event;
     });
   }
   return todaysEvent;

@@ -53,10 +53,11 @@ function Teaser() {
         <source src={video} type="video/mp4" />
       </video>
       <div className="content">
-        <img src={logo} className="logo" />
+        <img src={logo} className="logo" alt="logo" />
         <h1>{todaysEvent.info}</h1>
         <p className="info">{todaysEvent.streamInfo}</p>
         <iframe
+          title="stream"
           width="560"
           height="315"
           className="stream-teaser"

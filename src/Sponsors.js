@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import styled, { keyframes, css } from "styled-components";
+import React from "react";
+import styled, { keyframes } from "styled-components";
 import logo1 from "./images/sponsor/activision-blizzard.jpg";
 import logo2 from "./images/sponsor/bk-grafisk.jpg";
 import logo3 from "./images/sponsor/capcom.jpg";
@@ -187,124 +187,124 @@ function Sponsors() {
     <SponsorsWrapper>
       <div className="inner-wrapper">
         <div className="sponsor-logo">
-          <img src={logo1} />
+          <img src={logo1} alt="logo" />
         </div>
         <div className="sponsor-logo">
-          <img src={logo2} />
+          <img src={logo2} alt="logo" />
         </div>
         <div className="sponsor-logo">
-          <img src={logo3} />
+          <img src={logo3} alt="logo" />
         </div>
         <div className="sponsor-logo">
-          <img src={logo4} />
+          <img src={logo4} alt="logo" />
         </div>
         <div className="sponsor-logo">
-          <img src={logo5} />
+          <img src={logo5} alt="logo" />
         </div>
         <div className="sponsor-logo">
-          <img src={logo6} />
+          <img src={logo6} alt="logo" />
         </div>
         <div className="sponsor-logo">
-          <img src={logo7} />
+          <img src={logo7} alt="logo" />
         </div>
         <div className="sponsor-logo">
-          <img src={logo8} />
+          <img src={logo8} alt="logo" />
         </div>
         <div className="sponsor-logo">
-          <img src={logo9} />
+          <img src={logo9} alt="logo" />
         </div>
         <div className="sponsor-logo">
-          <img src={logo10} />
+          <img src={logo10} alt="logo" />
         </div>
         <div className="sponsor-logo">
-          <img src={logo11} />
+          <img src={logo11} alt="logo" />
         </div>
         <div className="sponsor-logo">
-          <img src={logo12} />
+          <img src={logo12} alt="logo" />
         </div>
         <div className="sponsor-logo">
-          <img src={logo13} />
+          <img src={logo13} alt="logo" />
         </div>
         <div className="sponsor-logo">
-          <img src={logo14} />
+          <img src={logo14} alt="logo" />
         </div>
         <div className="sponsor-logo">
-          <img src={logo15} />
+          <img src={logo15} alt="logo" />
         </div>
         <div className="sponsor-logo">
-          <img src={logo16} />
+          <img src={logo16} alt="logo" />
         </div>
         <div className="sponsor-logo">
-          <img src={logo17} />
+          <img src={logo17} alt="logo" />
         </div>
         <div className="sponsor-logo">
-          <img src={logo18} />
+          <img src={logo18} alt="logo" />
         </div>
         <div className="sponsor-logo">
-          <img src={logo19} />
+          <img src={logo19} alt="logo" />
         </div>
         <div className="sponsor-logo">
-          <img src={logo20} />
+          <img src={logo20} alt="logo" />
         </div>
         <div className="sponsor-logo">
-          <img src={logo1} />
+          <img src={logo1} alt="logo" />
         </div>
         <div className="sponsor-logo">
-          <img src={logo2} />
+          <img src={logo2} alt="logo" />
         </div>
         <div className="sponsor-logo">
-          <img src={logo3} />
+          <img src={logo3} alt="logo" />
         </div>
         <div className="sponsor-logo">
-          <img src={logo4} />
+          <img src={logo4} alt="logo" />
         </div>
         <div className="sponsor-logo">
-          <img src={logo5} />
+          <img src={logo5} alt="logo" />
         </div>
         <div className="sponsor-logo">
-          <img src={logo6} />
+          <img src={logo6} alt="logo" />
         </div>
         <div className="sponsor-logo">
-          <img src={logo7} />
+          <img src={logo7} alt="logo" />
         </div>
         <div className="sponsor-logo">
-          <img src={logo8} />
+          <img src={logo8} alt="logo" />
         </div>
         <div className="sponsor-logo">
-          <img src={logo9} />
+          <img src={logo9} alt="logo" />
         </div>
         <div className="sponsor-logo">
-          <img src={logo10} />
+          <img src={logo10} alt="logo" />
         </div>
         <div className="sponsor-logo">
-          <img src={logo11} />
+          <img src={logo11} alt="logo" />
         </div>
         <div className="sponsor-logo">
-          <img src={logo12} />
+          <img src={logo12} alt="logo" />
         </div>
         <div className="sponsor-logo">
-          <img src={logo13} />
+          <img src={logo13} alt="logo" />
         </div>
         <div className="sponsor-logo">
-          <img src={logo14} />
+          <img src={logo14} alt="logo" />
         </div>
         <div className="sponsor-logo">
-          <img src={logo15} />
+          <img src={logo15} alt="logo" />
         </div>
         <div className="sponsor-logo">
-          <img src={logo16} />
+          <img src={logo16} alt="logo" />
         </div>
         <div className="sponsor-logo">
-          <img src={logo17} />
+          <img src={logo17} alt="logo" />
         </div>
         <div className="sponsor-logo">
-          <img src={logo18} />
+          <img src={logo18} alt="logo" />
         </div>
         <div className="sponsor-logo">
-          <img src={logo19} />
+          <img src={logo19} alt="logo" />
         </div>
         <div className="sponsor-logo">
-          <img src={logo20} />
+          <img src={logo20} alt="logo" />
         </div>
       </div>
     </SponsorsWrapper>

@@ -80,10 +80,8 @@ function getTimeWithOutSymbol(dateObject) {
 }
 
 function LeftMenu() {
-  let [hasDates, setHasDates] = useState(todaysEvent);
-  let [eventName, setEventName] = useState(
-    todaysEvent ? todaysEvent.name : false
-  );
+  let [hasDates] = useState(todaysEvent);
+  let [eventName] = useState(todaysEvent ? todaysEvent.name : false);
   let [events, setEvents] = useState(todaysEvent ? todaysEvent.events : false);
   let [currentIndex, setCurrentIndex] = useState({ index: 0 });
   let [manualToggle, setManualToggle] = useState(false);
@@ -111,12 +109,12 @@ function LeftMenu() {
 
       setCurrentIndex((currentIndex) => (currentIndex = newIndex));
       newEvents.map((event, index) => {
-        console.log(index, newIndex.index, newIndex.index + 1 === index);
         if (index < newIndex.index) event.status = "ended";
         else if (index === newIndex.index) event.status = "ongoing";
         else if (index > newIndex.index && newIndex.index + 1 === index)
           event.status = "next";
         else if (index > newIndex.index) event.status = "upcoming";
+        return event;
       });
       setEvents(newEvents);
     };
@@ -135,17 +133,6 @@ function LeftMenu() {
         let newEvents = [...events];
         let onGoingIndex = false;
         newEvents.map((event, index) => {
-          console.log(
-            timeInt,
-            event.startTimeInt,
-            event.endTimeInt,
-            event.name,
-            "",
-            event.startTimeInt <= timeInt,
-            event.endTimeInt > timeInt,
-            "",
-            event.startTimeInt < timeInt
-          );
           if (event.startTimeInt <= timeInt && event.endTimeInt > timeInt) {
             event.status = "ongoing";
             onGoingIndex = index;
@@ -157,13 +144,14 @@ function LeftMenu() {
               event.status = "next";
             else event.status = "upcoming";
           }
+          return event;
         });
         setEvents(newEvents);
       }
     }
     const interval = setInterval(updateEvents, 1000);
     return () => clearInterval(interval);
-  }, [currentIndex]);
+  }, [currentIndex, events, manualToggle]);
 
   return (
     <LeftMenuStyles>
