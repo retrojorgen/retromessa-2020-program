@@ -62,9 +62,9 @@ function Teaser() {
           height="315"
           className="stream-teaser"
           src={`https://www.youtube.com/embed/${todaysEvent.youTubeStreamId}?controls=0&autoplay=1&mute=1`}
-          frameborder="0"
+          frameBorder="0"
           allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
+          allowFullscreen
         ></iframe>
       </div>
     </TeaserStyles>
