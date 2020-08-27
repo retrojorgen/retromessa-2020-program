@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import program from "./program";
+import getTodaysEvent from "./program";
+
+const todaysEvent = getTodaysEvent();
 
 const LeftMenuStyles = styled.div`
   .events {
@@ -10,18 +12,59 @@ const LeftMenuStyles = styled.div`
     flex-direction: column;
     justify-content: space-between;
     color: red;
+    .event-header {
+      color: white;
+      text-transform: uppercase;
+      margin: 0;
+      padding: 0;
+      padding-left: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      margin-bottom: 10px;
+    }
     .event {
       color: white;
       font-size: 1.4em;
       display: flex;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
+      padding: 10px;
+      border-radius: 20px;
       &.upcoming {
+      }
+      &.next {
+        background-color: #9c27b0;
+        .event-name {
+          &:before {
+            content: "COMING UP";
+            display: inline-block;
+            font-size: 1rem;
+            color: #9c27b0;
+            font-weight: bold;
+            background-color: white;
+            padding: 2px 6px;
+            border-radius: 10px;
+            margin-right: 6px;
+          }
+        }
       }
       &.ended {
         opacity: 0.5;
       }
       &.ongoing {
         background-color: blue;
+        .event-name {
+          &:before {
+            content: "NOW";
+            display: inline-block;
+            font-size: 1rem;
+            color: blue;
+            font-weight: bold;
+            background-color: white;
+            padding: 2px 6px;
+            border-radius: 10px;
+            margin-right: 6px;
+          }
+        }
       }
       .time {
         margin-right: 20px;
@@ -29,27 +72,11 @@ const LeftMenuStyles = styled.div`
     }
   }
 `;
-const today = new Date(new Date().setHours(0, 0, 0, 0));
 
-function getTime(dateObject) {
+function getTimeWithOutSymbol(dateObject) {
   let hours = dateObject.getHours().toString().padStart(2, "0");
   let minutes = dateObject.getMinutes().toString().padStart(2, "0");
-  return `${hours}:${minutes}`;
-}
-
-program.map((event) => (event.date = new Date(event.date)));
-
-let todaysEvent = program.find(
-  (event) => event.date.getTime() === today.getTime()
-);
-
-if (todaysEvent) {
-  todaysEvent.events.map((event) => {
-    event.startTime = new Date(event.startTime);
-    event.endTime = new Date(event.endTime);
-    event.startTimeFormatted = getTime(event.startTime);
-    event.status = "upcoming";
-  });
+  return `${hours}${minutes}`;
 }
 
 function LeftMenu() {
@@ -63,95 +90,90 @@ function LeftMenu() {
 
   useEffect(() => {
     const updateCurrentIndex = (e) => {
+      if (!manualToggle) {
+        setManualToggle(true);
+      }
       let newIndex = { ...currentIndex };
-      newIndex.index = newIndex.index + 1;
-      console.log(newIndex, currentIndex);
+      let keyCode = e.keyCode;
+      let newEvents = [...events];
+      console.log(keyCode);
+      if (keyCode === 40) {
+        newIndex.index =
+          newIndex.index + 1 <= newEvents.length - 1
+            ? newIndex.index + 1
+            : newIndex.index;
+      } else if (keyCode === 38) {
+        newIndex.index =
+          newIndex.index - 1 >= 0 ? newIndex.index - 1 : newIndex.index;
+      } else if (keyCode === 27) {
+        setManualToggle(false);
+      }
+
       setCurrentIndex((currentIndex) => (currentIndex = newIndex));
+      newEvents.map((event, index) => {
+        console.log(index, newIndex.index, newIndex.index + 1 === index);
+        if (index < newIndex.index) event.status = "ended";
+        else if (index === newIndex.index) event.status = "ongoing";
+        else if (index > newIndex.index && newIndex.index + 1 === index)
+          event.status = "next";
+        else if (index > newIndex.index) event.status = "upcoming";
+      });
+      setEvents(newEvents);
     };
 
     document.addEventListener("keydown", updateCurrentIndex);
     return () => {
       document.removeEventListener("keydown", updateCurrentIndex);
     };
-  }, [currentIndex]);
+  }, [currentIndex, manualToggle, events]);
 
   useEffect(() => {
-    const interval = setInterval(() => {
+    function updateEvents() {
       if (!manualToggle) {
         let now = new Date();
+        let timeInt = parseInt(getTimeWithOutSymbol(now));
         let newEvents = [...events];
+        let onGoingIndex = false;
         newEvents.map((event, index) => {
-          if (event.endTime.getTime() < now.getTime()) {
-            event.status = "ended";
-          } else if (
-            event.StartTime.getTime() >= now.getTime() &&
-            event.endTime.getTime() < now.getTime()
-          ) {
+          console.log(
+            timeInt,
+            event.startTimeInt,
+            event.endTimeInt,
+            event.name,
+            "",
+            event.startTimeInt <= timeInt,
+            event.endTimeInt > timeInt,
+            "",
+            event.startTimeInt < timeInt
+          );
+          if (event.startTimeInt <= timeInt && event.endTimeInt > timeInt) {
             event.status = "ongoing";
+            onGoingIndex = index;
             setCurrentIndex(index);
+          } else if (event.startTimeInt < timeInt) {
+            event.status = "ended";
           } else {
-            event.status = "upcoming";
+            if (onGoingIndex !== false && index === onGoingIndex + 1)
+              event.status = "next";
+            else event.status = "upcoming";
           }
         });
         setEvents(newEvents);
       }
-    }, 1000);
-    return () => clearInterval(interval);
-  }, []);
-
-  /**
-  useEffect(() => {
-    function printKeyCode(e) {
-      let keyCode = e.keyCode;
-      let newIndex = currentIndex;
-      let newEvents = [...events];
-
-      if (!manualToggle) {
-        manualToggle = true;
-      }
-      if (keyCode === 38) {
-        if (newIndex === false) {
-          newIndex = newEvents.length - 1;
-        } else if (newIndex !== false && newIndex > 0) {
-          newIndex = newIndex--;
-        }
-      } else if (keyCode === 40) {
-        console.log("down", newIndex);
-        if (newIndex === false) {
-          newIndex = 0;
-        } else if (newIndex !== false && newIndex < newEvents.length - 1) {
-          console.log("new index");
-          newIndex = newIndex++;
-        }
-      }
-
-      newEvents.forEach((event, index) => {
-        if (index < newIndex) {
-          event.status = "ended";
-        } else if (index === newIndex) {
-          event.status = "ongoing";
-        } else {
-          event.status = "upcoming";
-        }
-        setEvents(newEvents);
-      });
-      setCurrentIndex(["hest"]);
-      console.log("setting index", "hest");
     }
-    console.log("yo");
-    window.addEventListener("keyup", printKeyCode.bind(this));
-    return () => window.removeEventListener("keyup", printKeyCode.bind(this));
+    const interval = setInterval(updateEvents, 1000);
+    return () => clearInterval(interval);
   }, [currentIndex]);
-   */
+
   return (
     <LeftMenuStyles>
       <ul className="events">
-        {currentIndex.index}
+        <h1 className="event-header">{eventName}</h1>
         {hasDates &&
           events.map((event, key) => (
             <li className={`event ${event.status}`} key={key}>
               <span className="time">{event.startTimeFormatted}</span>
-              <span>{event.name}</span>
+              <span className="event-name">{event.name}</span>
             </li>
           ))}
       </ul>

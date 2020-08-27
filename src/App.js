@@ -2,17 +2,21 @@ import React from "react";
 
 import styled from "styled-components";
 import LeftMenu from "./LeftMenu";
+import Sponsors from "./Sponsors";
+import Teaser from "./Teaser";
 
 import blackPixelPattern from "./images/black-pixel-pattern.png";
 import whitePixelPattern from "./images/white-pixel-pattern.png";
 const Wrapper = styled.div`
-  width: 100%;
-  height: 100%;
+  width: 1920px;
+  height: 1080px;
   display: flex;
+  overflow: hidden;
 `;
 
 const ProgramWrapper = styled.div`
-  width: 500px;
+  width: 700px;
+  flex: 1 1 700px;
   height: 100%;
   background-color: black;
   position: relative;
@@ -23,26 +27,28 @@ const ProgramWrapper = styled.div`
     width: 32px;
     height: 100%;
     background: url(${blackPixelPattern});
+    background-repeat-x: no-repeat;
     left: 100%;
     top: 0;
   }
 `;
 
 const MainWrapper = styled.div`
-  width: 100%;
+  width: calc(100% - 700px);
   height: 100%;
   flex-direction: column;
 `;
 
 const TeaserWrapper = styled.div`
   width: 100%;
-  height: calc(100% - 400px);
+  height: calc(100% - 160px);
   background-color: blue;
+  position: relative;
 `;
 const SponsorsWrapper = styled.div`
-  height: 400px;
+  height: 160px;
   width: 100%;
-  background-color: white;
+  background-color: #f4f5f7;
   position: relative;
   &:after {
     content: "";
@@ -62,8 +68,12 @@ function App() {
         <LeftMenu />
       </ProgramWrapper>
       <MainWrapper>
-        <TeaserWrapper></TeaserWrapper>
-        <SponsorsWrapper></SponsorsWrapper>
+        <TeaserWrapper>
+          <Teaser />
+        </TeaserWrapper>
+        <SponsorsWrapper>
+          <Sponsors />
+        </SponsorsWrapper>
       </MainWrapper>
     </Wrapper>
   );
