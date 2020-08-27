@@ -88,35 +88,38 @@ function LeftMenu() {
 
   useEffect(() => {
     const updateCurrentIndex = (e) => {
-      if (!manualToggle) {
-        setManualToggle(true);
-      }
-      let newIndex = { ...currentIndex };
       let keyCode = e.keyCode;
-      let newEvents = [...events];
-      console.log(keyCode);
-      if (keyCode === 40) {
-        newIndex.index =
-          newIndex.index + 1 <= newEvents.length - 1
-            ? newIndex.index + 1
-            : newIndex.index;
-      } else if (keyCode === 38) {
-        newIndex.index =
-          newIndex.index - 1 >= 0 ? newIndex.index - 1 : newIndex.index;
-      } else if (keyCode === 27) {
-        setManualToggle(false);
-      }
+      if (keyCode === 40 || keyCode === 38 || keyCode === 27) {
+        if (!manualToggle) {
+          setManualToggle(true);
+        }
+        let newIndex = { ...currentIndex };
+        if (!newIndex.index) newIndex.index = 0;
 
-      setCurrentIndex((currentIndex) => (currentIndex = newIndex));
-      newEvents.map((event, index) => {
-        if (index < newIndex.index) event.status = "ended";
-        else if (index === newIndex.index) event.status = "ongoing";
-        else if (index > newIndex.index && newIndex.index + 1 === index)
-          event.status = "next";
-        else if (index > newIndex.index) event.status = "upcoming";
-        return event;
-      });
-      setEvents(newEvents);
+        let newEvents = [...events];
+        if (keyCode === 40) {
+          newIndex.index =
+            newIndex.index + 1 <= newEvents.length - 1
+              ? newIndex.index + 1
+              : newIndex.index;
+        } else if (keyCode === 38) {
+          newIndex.index =
+            newIndex.index - 1 >= 0 ? newIndex.index - 1 : newIndex.index;
+        } else if (keyCode === 27) {
+          setManualToggle(false);
+        }
+
+        setCurrentIndex((currentIndex) => (currentIndex = newIndex));
+        newEvents.map((event, index) => {
+          if (index < newIndex.index) event.status = "ended";
+          else if (index === newIndex.index) event.status = "ongoing";
+          else if (index > newIndex.index && newIndex.index + 1 === index)
+            event.status = "next";
+          else if (index > newIndex.index) event.status = "upcoming";
+          return event;
+        });
+        setEvents(newEvents);
+      }
     };
 
     document.addEventListener("keydown", updateCurrentIndex);
@@ -146,6 +149,7 @@ function LeftMenu() {
           }
           return event;
         });
+
         setEvents(newEvents);
       }
     }
