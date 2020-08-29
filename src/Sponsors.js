@@ -50,7 +50,7 @@ const SponsorsWrapper = styled.div`
     padding: 20px 0;
     display: flex;
     margin-left: -11035px;
-    animation: ${Loop} 10s linear infinite;
+    animation: ${Loop} 60s linear infinite;
     flex-wrap: nowrap;
     .sponsor-logo {
       padding-left: 40px;
