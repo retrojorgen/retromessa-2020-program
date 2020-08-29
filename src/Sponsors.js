@@ -1,6 +1,6 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
-import logo1 from "./images/sponsor/activision-blizzard.jpg";
+import logo1 from "./images/sponsor/allegro.jpg";
 import logo2 from "./images/sponsor/bk-grafisk.jpg";
 import logo3 from "./images/sponsor/capcom.jpg";
 import logo4 from "./images/sponsor/dotemu.jpg";
@@ -20,7 +20,7 @@ import logo17 from "./images/sponsor/fon-anlegg.jpg";
 import logo18 from "./images/sponsor/hp-omen.jpg";
 import logo19 from "./images/sponsor/hvaltorvet.jpg";
 import logo20 from "./images/sponsor/fjorden-elektro.jpg";
-import logo21 from "./images/sponsor/allegro.jpg";
+import logo21 from "./images/sponsor/activision-blizzard.jpg";
 
 const Loop = keyframes`
     0% {
@@ -50,7 +50,7 @@ const SponsorsWrapper = styled.div`
     padding: 20px 0;
     display: flex;
     margin-left: -10500px;
-    animation: ${Loop} 60s linear infinite;
+    animation: ${Loop} 10s linear infinite;
     flex-wrap: nowrap;
     .sponsor-logo {
       padding-left: 40px;
