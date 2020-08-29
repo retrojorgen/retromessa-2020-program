@@ -20,6 +20,7 @@ import logo17 from "./images/sponsor/fon-anlegg.jpg";
 import logo18 from "./images/sponsor/hp-omen.jpg";
 import logo19 from "./images/sponsor/hvaltorvet.jpg";
 import logo20 from "./images/sponsor/fjorden-elektro.jpg";
+import logo21 from "./images/sponsor/allegro.jpg";
 
 const Loop = keyframes`
     0% {
@@ -54,6 +55,9 @@ const SponsorsWrapper = styled.div`
     .sponsor-logo {
       padding-left: 40px;
       &:nth-child(40) {
+        animation: ${Scale} 2s 0s ease-in-out infinite;
+      }
+      &:nth-child(41) {
         animation: ${Scale} 2s 0s ease-in-out infinite;
       }
       &:nth-child(1) {
@@ -305,6 +309,9 @@ function Sponsors() {
         </div>
         <div className="sponsor-logo">
           <img src={logo20} alt="logo" />
+        </div>
+        <div className="sponsor-logo">
+          <img src={logo21} alt="logo" />
         </div>
       </div>
     </SponsorsWrapper>
