@@ -27,7 +27,7 @@ const Loop = keyframes`
         transform: translateX(0)
     }
     100% {
-        transform: translateX(5850px)
+        transform: translateX(6328px)
     }
 `;
 const Scale = keyframes`
@@ -49,8 +49,8 @@ const SponsorsWrapper = styled.div`
   .inner-wrapper {
     padding: 20px 0;
     display: flex;
-    margin-left: -10500px;
-    animation: ${Loop} 60s linear infinite;
+    margin-left: -11035px;
+    animation: ${Loop} 10s linear infinite;
     flex-wrap: nowrap;
     .sponsor-logo {
       padding-left: 40px;
@@ -249,6 +249,9 @@ function Sponsors() {
         </div>
         <div className="sponsor-logo">
           <img src={logo20} alt="logo" />
+        </div>
+        <div className="sponsor-logo">
+          <img src={logo21} alt="logo" />
         </div>
         <div className="sponsor-logo">
           <img src={logo1} alt="logo" />
