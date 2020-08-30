@@ -209,38 +209,20 @@
       },
       {
         "startTime": "Tue Aug 25 2020 14:00:00 GMT+0200",
-        "endTime": "Tue Aug 25 2020 14:30:00 GMT+0200",
+        "endTime": "Tue Aug 25 2020 16:00:00 GMT+0200",
         "name": "Vi spiller rare spill i studio",
         "location": "Retrostua"
       },
       {
-        "startTime": "Tue Aug 25 2020 14:30:00 GMT+0200",
-        "endTime": "Tue Aug 25 2020 15:30:00 GMT+0200",
-        "name": "Vi prater med Børge Lund om Lunsj",
-        "location": "Retrostua"
-      },
-      {
-        "startTime": "Tue Aug 25 2020 15:30:00 GMT+0200",
-        "endTime": "Tue Aug 25 2020 16:00:00 GMT+0200",
-        "name": "Pause",
-        "location": "Retrostua"
-      },
-      {
         "startTime": "Tue Aug 25 2020 16:00:00 GMT+0200",
-        "endTime": "Tue Aug 25 2020 16:30:00 GMT+0200",
-        "name": "Vi prater med YouTuberen Ashens",
-        "location": "Retrostua"
-      },
-      {
-        "startTime": "Tue Aug 25 2020 16:30:00 GMT+0200",
         "endTime": "Tue Aug 25 2020 17:00:00 GMT+0200",
-        "name": "Retroquiz med YouTuber DJ Slopes",
+        "name": "Vi prater med Børge Lund om Lunsj",
         "location": "Retrostua"
       },
       {
         "startTime": "Tue Aug 25 2020 17:00:00 GMT+0200",
         "endTime": "Tue Aug 25 2020 18:00:00 GMT+0200",
-        "name": "Hvilke tiers har vi nådd?",
+        "name": "Pause",
         "location": "Retrostua"
       },
       {
